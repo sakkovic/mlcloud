@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Price's House Forecast for Tunisia</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h1 class="jumbotron bg-primary">Price's House Forecast for Tunisia</h1>
+  <br><br>
+  <!-- <input type="file" id="image-input" name="my_image" accept="image/jpeg, image/png, image/jpg">
+  <div id="display-image"></div> -->
+
+
+  <form class="form-horizontal" action="/predict" method="POST" enctype="multipart/form-data">
+         <div class="form-group">
+      <label class="control-label " for="pwd">Category</label>
+      <select class="form-select" name="category" aria-label="Default select example" required="required">
+      <option selected>Category</option>
+      <option value="0">Appartements</option>
+      <option value="3">Locations de vacances</option>
+      <option value="5">Maisons et Villas</option>
+      <option value="4">Magasins ,Commerces et Locaux industriels</option>
+      <option value="1">Bureaux et Plateaux</option>
+      <option value="2">Colocations</option>
+    </select>
+         </div>
+
+         <div class="form-group">
+      <label class="control-label " for="pwd">Room_count</label>
+      <input type="number" id="tentacles" name="Room_count"
+      min="0" max="20" required="required">
+         </div>
+
+         <div class="form-group">
+        <div class="form-group">
+          <label class="control-label " for="pwd">bathroom_count</label>
+          <input type="number" id="tentacles" name="bathroom_count" min="0" max="30" required="required">
+          </div>
+         </div>
+
+        <div class="form-group">
+          <div class="form-group">
+            <label class="control-label " for="pwd">Size m²</label>
+            <input type="number" id="tentacles" name="Size" min="0" max="1000" required="required">
+            </div>
+        </div>
+
+        <div class="form-group ">
+            <label class="control-label " for="pwd">Type</label>
+            <select class="form-select" aria-label="Default select example" name="Type" required="required">
+            <option selected>Type</option>
+            <option value="0">À Louer</option>
+            <option value="1">À Vendre</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label " for="pwd">City</label>
+            <select class="form-select" aria-label="Default select example" name="city" required="required">
+            <option selected>Region</option>
+            <option value="0">Ariana</option>
+            <option value="3">Béja</option>
+            <option value="1">Ben Arous</option>
+            <option value="2">Bizerte</option>
+            <option value="4">Gabès</option>
+            <option value="5">Gafsa</option>
+            <option value="6">Jendouba</option>
+            <option value="7">Kairouan</option>
+            <option value="8">Kasserine</option>
+            <option value="9">Kébili</option>
+            <option value="10">La manouba</option>
+            <option value="11">Le kef</option>
+            <option value="12">Mahdia</option>
+            <option value="13">Monastir</option>
+            <option value="14">Mednine</option>
+            <option value="17">Sidi bouzid</option>
+            <option value="18">Siliana</option>
+            <option value="19">Sousse</option>
+            <option value="20">Tataouine</option>
+            <option value="21">Tozeur</option>
+            <option value="23">Zaghouan</option>
+            <option value="16">Sfax</option>
+            <option value="15">Nabeul</option>
+            <option value="22">Tunis</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+      <div class="">
+        <button type="submit" class="btn btn-success">Submit</button>
+      </div>
+        </div>
+  </form>
+
+  {% if prediction %}
+  
+  <h2> Your House price is around  : <i> {{prediction}} </i> DT</h2>
+
+  {% endif %}
+
+</div>
+
+
+
+
+
+
+<style>
+  #display-image{
+  width: 400px;
+  height: 225px;
+  border: 1px solid black;
+  background-position: center;
+  background-size: cover;
+}
+
+.form-horizontal .form-group {
+    margin-right: -10px;
+    margin-left: 0px;
+    margin-top: 20px;
+}
+</style>
+<script>
+  const image_input = document.querySelector("#image-input");
+
+image_input.addEventListener("change", function() {
+  const reader = new FileReader();
+  reader.addEventListener("load", () => {
+    const uploaded_image = reader.result;
+    document.querySelector("#display-image").style.backgroundImage = `url(${uploaded_image})`;
+  });
+  reader.readAsDataURL(this.files[0]);
+});
+
+
+</script>
+</body>
+
+</html>
