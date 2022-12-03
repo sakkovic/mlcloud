@@ -14,7 +14,6 @@ model = pickle.load(
 
 # routes
 
-
 @app.route("/", methods=['GET', 'POST'])
 def main():
     return render_template("index.html")
@@ -32,6 +31,8 @@ def predict():
         data6 = float(request.form['city'])
         arr = np.array([[data1, data2, data3, data4, data5, data6]])
         pred = model.predict(arr)
+        print(type(pred))
+        pred = str(pred[0])
         return render_template('index.html', prediction=pred)
         # return render_template('index.html', data="aaa")
 
